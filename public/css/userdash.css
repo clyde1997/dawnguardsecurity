@@ -1,0 +1,43 @@
+.wholeuserContainer{
+
+    background-color: rgb(66, 89, 124);
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+.navbars_profileContainer{
+
+    background-color: white;
+    border-top-left-radius:  20px;
+    border-bottom-left-radius:  20px;
+}
+
+.collapsable_contents_container{
+
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+#employee_details{
+
+    display: none;
+
+}
+
+#employeeuploaddocument{
+
+    display: none;
+
+}
+
+#viewpayslips{
+
+    display: none;
+ 
+
+}

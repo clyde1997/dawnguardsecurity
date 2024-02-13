@@ -1,0 +1,128 @@
+body{
+
+    height: auto;
+    margin: auto;
+    
+}
+
+.services_container img{
+
+    border-radius: 5px;
+
+}
+
+
+.service_Card1{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+.service_Card2{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+.service_Card3{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+.service_Card4{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+.service_Card5{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+.service_col1:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.service_col2:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.service_col3:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.service_col4:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.service_col5:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.cater_title{
+
+    background-color: rgb(66, 89, 124);
+    padding: 10px;
+
+}
+
+.cater_contents h5{
+
+    color:  rgb(66, 89, 124);
+
+}
+
+.cater_contents img:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.cater_contents img{
+
+    border-radius: 20px;
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+
+.gallery_inner img:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.gallery_texts{
+
+    backdrop-filter: blur(10rem);
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.get_started{
+
+    background-color: rgb(66, 89, 124);
+    padding: 50px;
+
+}

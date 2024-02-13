@@ -1,0 +1,33 @@
+.clients_container img{
+
+    border-radius: 5px;
+
+}
+
+
+.clients_Card{
+
+    box-shadow: -5px 5px 5px rgb(187, 187, 187);
+
+}
+
+
+.clients_col:hover{
+
+    transition: 0.3s ease;
+    transform: scale(1.1);
+
+}
+
+.client_title{
+
+    color:  rgb(66, 89, 124);
+
+}
+
+.get_started{
+
+    background-color: rgb(66, 89, 124);
+    padding: 50px;
+
+}

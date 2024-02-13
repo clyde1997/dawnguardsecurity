@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap');
+
+*{
+
+    font-family: 'Public Sans', sans-serif;
+
+}
+
+.dawnguard_logo img{
+    width: 25rem;
+    float: left;
+}
+
+.sub_logo img{
+    width: 14rem;
+    float: right;
+    margin-right: 2rem;
+}
+
+
+.navbar_main{
+
+    background-color: rgb(66, 89, 124);
+    padding: 10px;
+
+}
+
+.footer_main{
+
+    background-color: rgb(232, 232, 232);
+    margin: auto;
+}
+
+.footer_dawnguard{
+
+    border-right-style: solid;
+    border-color: rgb(193, 195, 199);
+    border-width: 2px;
+    color: rgb(66, 89, 124);
+
+
+}
+
+.footer_main_links{
+
+text-align: center;
+color: rgb(66, 89, 124);
+
+}
+
+.footer_contact{
+
+    color: rgb(66, 89, 124);
+
+}
+
+.footer_copyright{
+    background-color: rgb(66, 89, 124);
+    color: white;
+}

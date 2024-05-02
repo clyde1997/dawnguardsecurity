@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashDisplayingDatasController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CareersController;
 use App\Http\Controllers\ContactController;
@@ -130,27 +131,31 @@ Route::get('/employee/details/{id}', [Employee201FormController::class, 'viewEmp
 Route::get('/employee/documents/{id}', [EmployeeDocumentsController::class, 'viewEmployeeDocuments'])->name('employee.documents');
 
 //Route For Fetching Employee 201 Form details and Employee Payslip in their userdashboard
-Route::get('userdash', [EmployeeController::class, 'viewEmployeeData'])->middleware('Employee.Dash.Prevent');////HAD TO PUT THE OTHER /USERDASH TO MIDDLEWARE BECAUSE IT STILL CAN ACCESS THE USERDASH URL WITHOUT LOGGING IN
+Route::get('userdash', [EmployeeController::class, 'viewEmployeeData'])->middleware('Employee.Dash.Prevent');//HAD TO PUT THE OTHER /USERDASH TO MIDDLEWARE BECAUSE IT STILL CAN ACCESS THE USERDASH URL WITHOUT LOGGING IN
 
 //Route to display Clients in Clients Page
 Route::get('/ourclients', [OurClientsController:: class, 'clientBladeDisplay']);
 
+//Route For Displaying datas such as Careers, Employees, Clients, Contact Inquiries in admindash
+Route::get('/admindash', [AdminDashDisplayingDatasController::class, 'adminDisplayDatasView'])->middleware('Admin.Dash.Prevention');
+
 //HAD TO GROUP THE OTHER /ADMINDASH TO MIDDLEWARE BECAUSE IT STILL CAN ACCESS THE ADMINDASH URL WITHOUT LOGGING IN
-Route::middleware(['Admin.Dash.Prevention'])->group(function () {
+//Route::middleware(['Admin.Dash.Prevention'])->group(function () {
 
     //Route For Fetching Added Careers
-    Route::get('/admindash', [CareersController::class, 'viewAdminCareers']);
+   // Route::get('/admindash', [CareersController::class, 'viewAdminCareers']);
 
     //Route For Fetching Data of Employee in Records Admin Dashboard
-    Route::get('/admindash', [EmployeeController::class, 'employeeview']);
+  //  Route::get('/admindash', [EmployeeController::class, 'employeeview']);
 
     //Route To Fetch Clients Records in admin dash
-    Route::get('/admindash', [OurClientsController::class, 'clientView']);
+   // Route::get('/admindash', [OurClientsController::class, 'clientView']);
 
     //For Fetching data from contact us to admin dashboard
-    Route::get('/admindash', [ContactController::class, 'adminView']);
+   // Route::get('/admindash', [ContactController::class, 'adminView']);
 
-});
+//});
+
 
 
 //Routes auth middleware for any data that needs user authentication

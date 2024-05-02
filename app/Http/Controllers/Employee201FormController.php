@@ -80,7 +80,7 @@ class Employee201FormController extends Controller
         if ($request->hasFile('uploadpic')) {
 
             $imageUploadPic = $request->file('uploadpic');
-            $imageNameUploadPic = 'uploadpic_' . '.' . $imageUploadPic->getClientOriginalExtension();//to declare what kind of file type that is uploaded
+            $imageNameUploadPic = 'uploadpic_' . time() . '.' . $imageUploadPic->getClientOriginalExtension();//to declare what kind of file type that is uploaded
             $imageUploadPic->move(public_path('employeeimages'), $imageNameUploadPic);//Where to move the image file
         
             //Save image path to the database
@@ -93,7 +93,7 @@ class Employee201FormController extends Controller
         if ($request->hasFile('change_signature')) {
 
             $imageChangeSignature = $request->file('change_signature');
-            $imageNameChangeSignature = 'change_signature_' . '.' . $imageChangeSignature->getClientOriginalExtension();//to declare what kind of file type that is uploaded
+            $imageNameChangeSignature = 'change_signature_' . time() . '.' . $imageChangeSignature->getClientOriginalExtension();//to declare what kind of file type that is uploaded
             $imageChangeSignature->move(public_path('employeesignature'), $imageNameChangeSignature);//Where to move the image file
 
             //Save image path to the database
@@ -109,14 +109,14 @@ class Employee201FormController extends Controller
     }
 
 
-    //Function to view Employe 201 details per Employee ID
-   public function viewEmployeeDetails($id)
+    //Function to view Employe 201 details per Employee ID in admindash
+    public function viewEmployeeDetails($id)
     {
 
         //Find the employee account based on the provided ID, used findorfail in order to determine who's employee who has details or not.
         $employeeAccount = EmployeeAccounts::findOrFail($id);
 
-        //Retrieve the associated Employee201Form
+        //Retrieve the associated Employee201Form and EmployeeAccounts Model
         $employeeDetails = $employeeAccount->employee201Forms;
 
         return view('employee201details', compact('employeeDetails'));
@@ -157,6 +157,12 @@ class Employee201FormController extends Controller
         if($request->has('employeeemail')){
 
         $employeeDetails->employeeemail = $request->input('employeeemail');
+
+        }
+
+        if($request->has('employeeage')){
+
+            $employeeDetails->employeeage = $request->input('employeeage');
 
         }
 
@@ -246,7 +252,7 @@ class Employee201FormController extends Controller
             }
 
             $imageUploadPic = $request->file('uploadpic');
-            $imageNameUploadPic = 'uploadpic_' . '.' . $imageUploadPic->getClientOriginalExtension();//to declare what kind of file type that is uploaded
+            $imageNameUploadPic = 'uploadpic_' . time() . '.' . $imageUploadPic->getClientOriginalExtension();//to declare what kind of file type that is uploaded
             $imageUploadPic->move(public_path('employeeimages'), $imageNameUploadPic);
 
             // Save image path to the database
@@ -268,7 +274,7 @@ class Employee201FormController extends Controller
             }
 
             $imageChangeSignature = $request->file('change_signature');
-            $imageNameChangeSignature = 'change_signature_' . '.' . $imageChangeSignature->getClientOriginalExtension();//to declare what kind of file type that is uploaded
+            $imageNameChangeSignature = 'change_signature_' . time() . '.' . $imageChangeSignature->getClientOriginalExtension();//to declare what kind of file type that is uploaded
             $imageChangeSignature->move(public_path('employeesignature'), $imageNameChangeSignature);
 
             // Save image path to the database
@@ -459,7 +465,7 @@ class Employee201FormController extends Controller
 
         $employeeDetails->save();
 
-        return redirect()->route('employee.details', ['id' => $id])->with('status', 'Employee details updated successfully.');
+        return redirect()->route('employee.details', ['id' => $id])->with('updatesuccess', 'Employee details updated successfully.');
         
 
     }

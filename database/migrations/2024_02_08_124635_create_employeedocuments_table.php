@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('employeedocuments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employeeaccount_id')->constrained('employeeaccounts');
+            $table->string('filename');
             $table->string('documents');
             $table->timestamps();
         });

@@ -75,28 +75,32 @@ class EmployeeController extends Controller
 
 
      //Function to fetch datas in admin dash
-     public function employeeview(Request $request){
+     //public function employeeview(Request $request){
 
         //HAD TO DECLARE OTHER FETCHING DATAS SUCH AS CAREERS, INQUIRES, EMPLOYEES DATA, CLIENTS BECAUSE IM HAVING A UNDEFINED ERROR
-        $careers = Careers::paginate(5);
+       // $careers = Careers::paginate(5);
 
-        $inquiries = ContactUs::paginate(4);//Added pagination so the inquiries wont pile up
+       // $inquiries = ContactUs::paginate(4);//Added pagination so the inquiries wont pile up
 
-        $employees = EmployeeAccounts::paginate(5);
+       // $employees = EmployeeAccounts::paginate(5);
 
-        $clients = OurClients::paginate(5);
+       // $clients = OurClients::paginate(5);
 
-        return view('admindash', compact('careers', 'inquiries', 'employees', 'clients'));
-    }
+       // return view('admindash', compact('careers', 'inquiries', 'employees', 'clients'));
+  //  }
 
 
 
     //Function to fetch data from Employee201Form and EmployeePayslip
     public function viewEmployeeData()
     {
+        //Determine the logged in user
         $user = Auth::user();
         
+        //Display employee details per employee Foreign Key ID
         $employeeDetails = Employee201Form::where('employeeaccount_id', $user->id)->first();
+
+        //Display employee payslips per employee Foreign Key ID
         $employeePayslips = EmployeePayslip::where('employeeaccount_id', $user->id)->paginate(10);
         
         return view('userdash', compact('employeeDetails', 'employeePayslips'));

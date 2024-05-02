@@ -896,15 +896,16 @@
 
         <div class="buttons pt-5 text-center pb-5">
 
-            <a href="admindashreturn" class="btn btn-dark">Close</a>
+            <a href="admindashreturn" class="btn btn-dark" onclick="window.close()">Close</a>
             <button type="submit" class="btn btn-primary" name="201submit">Save And Proceed</button>
         
             </div>
 
 
     </form>
+    
 
-    @else
+    @elseif ($employeeDetails == null)
 
     <script>
 
@@ -915,13 +916,15 @@
 
     @endif
 
-    @if(session('status'))
+    @if (session('updatesuccess'))
 
     <script>
 
-        alert('{{ session('status') }}');
+        alert('{{ session('updatesuccess') }}');
+        window.close();
 
     </script>
+
 
     @endif
 

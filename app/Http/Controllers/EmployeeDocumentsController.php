@@ -13,18 +13,21 @@ class EmployeeDocumentsController extends Controller
     //Function to send Documents field to database 
     public function addDocument(Request $request){
 
-        
-        $employeeAccountId = Auth::id();//Gets the logged in user's id
+
+        //Gets the logged in user's id
+        $employeeAccountId = Auth::id();
 
         $incomingField = $request->validate([
 
+            'filename' => ['required'],
             'documents' => 'required|mimes:jpeg,pdf|max:2048',
 
         ]);
 
-      
-        $incomingField['employeeaccount_id'] = $employeeAccountId;//Adds the logged in user's ID to the validated data
+        //Adds the logged in user's ID to the validated data
+        $incomingField['employeeaccount_id'] = $employeeAccountId;
 
+        //Creates and Send Data to database with $incomingField that equals to $employeeAccountId
         $employeeDocuments = EmployeeDocuments::create($incomingField);
 
 
@@ -46,14 +49,31 @@ class EmployeeDocumentsController extends Controller
     }
 
 
-    //Function to view Employee Documents Per Employee ID
-    public function viewEmployeeDocuments($id)
+    //Function to view Employee Documents Per Employee ID   
+    public function viewEmployeeDocuments($id, Request $request)
     {
 
-        //Fetching the employeeaccount_id Foreign Key from EmployeeDocuments
-        $employeeDocuments = EmployeeDocuments::where('employeeaccount_id', $id)->get();
+        //For Search Documents Functionality
+        $employeeDocsQuery = EmployeeDocuments::query();
 
-        return view('employeedocs', compact('employeeDocuments'));
+        if($request->filled('documentSearch')){
+
+            $employeeDocsQuery->where('filename', 'like', '%' . $request->documentSearch . '%');
+
+        }
+
+        /*
+        Passing employeeDocuments to employeeDocsQuery to Fetch the employeeaccount_id Foreign Key from EmployeeDocuments Model
+        and also to make the search function work
+        */
+        $employeeDocuments = $employeeDocsQuery->where('employeeaccount_id', $id)->get();
+
+
+        //Below code is to fetch and display the Employee's Fullname by ID from EmployeeAccounts Model
+        $employeeFullName = EmployeeAccounts::findOrFail($id);
+
+
+        return view('employeedocs', compact('employeeDocuments', 'employeeFullName'));
 
     }
 

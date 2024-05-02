@@ -97,7 +97,7 @@
 
                         <div class="logout_button pt-5 pb-5">
 
-                            <form action="{{ route('admin.logout') }}" method="POST">
+                            <form action="{{ url('admin.logout') }}" method="POST">
 
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Log Out</button>
@@ -133,22 +133,26 @@
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeform">Fillout Employee Details</button>
     
                             </div>
-                      
-                            
-                            <!--
-                            <div class="col-md-6 searchEmployee pt-2">
+
+                            <div class="col-md-6 searchEmployee pt-2 d-flex justify-content-end">
                             
                                 <div class="searchcontainer d-flex">
 
-                                    <input type="text" name="search" class="form-control me-2" placeholder="Search Employee Here" aria-label="Search by fullname" aria-describedby="button-search" onchange="employeeSearch()">
+                                    <form>
+
+                                        <input type="search" name="employeeSearch" class="form-control me-2" placeholder="Search Employee Here" value="{{ request('employeeSearch') }}">
+
+                                    </form>
 
                                 </div>
 
                             </div>
-                            -->
+
+                           
 
                         </div>
 
+                        @if($employees)
                         <table class="table">
                             <thead>
                                 <tr>
@@ -196,6 +200,11 @@
 
                         </div>
 
+                        @else
+
+                        <p>No employees found.</p>
+
+                        @endif
                     
 
 
@@ -208,12 +217,37 @@
 
                         <h4 class="h4 text-center pb-4">Employee Management</h4>
 
-                        <div class="addemployee_button pb-4">
+                        <div class="row">
 
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addemployee">Add Employee</button>
+                            <div class="col-md-6">
+
+                                <div class="addemployee_button pb-4">
+
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addemployee">Add Employee</button>
+        
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 searchEmployee pt-2 d-flex justify-content-end">
+                            
+                                <div class="searchcontainer d-flex">
+
+                                    <form>
+
+                                        <input type="search" name="employeeSearch" class="form-control me-2" placeholder="Search Employee Here" value="{{ request('employeeSearch') }}">
+
+                                    </form>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
+                    
+
+                        @if ($employees)
                         <table class="table">
 
                             <thead>
@@ -221,6 +255,7 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Client Designation</th>
+                                <th scope="col">Created At</th>
                                 <th scope="col">Employee Status</th>
                             </tr>
 
@@ -233,6 +268,8 @@
                                 <tr>
                                     <td>{{ $employee->fullname }}</td>
                                     <td>{{ $employee->clientdesignation }}</td>
+                                    <td>{{ $employee->created_at }}</td>
+
 
                                     <td>
 
@@ -270,6 +307,7 @@
                             </div>
 
                         </div>
+                        @endif
 
                     </div>
 
@@ -332,6 +370,7 @@
 
                         <div class="table-responsive">
 
+                            @if ($inquiries)
                             <table class="table">
 
                                 <thead>
@@ -428,6 +467,7 @@
                         </div>
 
                     </div>
+                    @endif
 
                 </div>
 
@@ -448,6 +488,7 @@
 
                     <div class="table-responsive">
 
+                        @if ($careers)
                         <table class="table">
 
                             <thead>
@@ -516,13 +557,14 @@
                         <!--The Pagination Links-->
                         <div class="row pt-4">
 
-                            <div class="pagination d-flex justify-content-center">
+                            <div class="paginationCareers d-flex justify-content-center">
 
                                 {{ $careers->links() }}
 
                             </div>
 
                         </div>
+                        @endif
 
                 </div>
 
@@ -537,7 +579,7 @@
 
                     <div class="row">
 
-                        <form method="POST" action="{{ url('uploadEmployeePayslip') }}" enctype="multipart/form-data">
+                        <form method="POST" class="needs-validation" action="{{ url('uploadEmployeePayslip') }}" enctype="multipart/form-data" novalidate>
                             @csrf
 
                             <div class="row pt-2 pb-4">
@@ -550,26 +592,32 @@
 
                                     <select class="form-select" aria-label="Default select example" name="employeeaccount_id">
                                     
-                                    @foreach ($employees as $employee )
+                                    @foreach ($employeesDropDowns as $employeesDropDown )
 
-                                    <option value=" {{$employee->id}} "> {{$employee->fullname}} </option>
+                                    <option value=" {{$employeesDropDown->id}} "> {{$employeesDropDown->fullname}} </option>
                                         
                                     @endforeach
 
                                     </select>
+                                    
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Select Employee Account!</div>
 
                                 </div>
 
                             </div>
 
-                            <div class="row pt-2 pb-4">
+
+                            <div class="row pt-3 pb-4">
 
                                 <h4 class="h4 pb-2">Step 2: Upload Payslip</h4>
 
                                 <div class="col-md-12">
 
                                     <label class="form-label">Upload Payslip</label>
-                                    <input type="file" name="payslip" id="payslip" class="form-control"> 
+                                    <input type="file" name="payslip" id="payslip" class="form-control">
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Upload Employee Payslip File!</div> 
 
                                 </div>
 
@@ -602,16 +650,40 @@
 
                     </div>
 
-                    <div class="addClientsButton pt-2 pb-4">
+                    <div class="row">
 
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addClient">Add Client</button>
+                        <div class="col-md-6">
+
+                            <div class="addClientsButton pt-2 pb-4">
+
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addClient">Add Client</button>
+        
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 searchClients pt-2 d-flex justify-content-end">
+                            
+                            <div class="searchcontainer d-flex">
+
+                                <form>
+
+                                    <input type="search" name="clientSearch" class="form-control me-2" placeholder="Search Client Here" value="{{ request('clientSearch') }}">
+
+                                </form>
+
+                            </div>
+
+                        </div>
 
                     </div>
+
 
                     <div class="row">
 
                         <div class="table-responsive">
 
+                            @if ($clients)
                             <table class="table">
 
                                 <thead>
@@ -674,6 +746,7 @@
                                 </div>
 
                             </div>
+                            @endif
                     
                     </div>
 
@@ -744,9 +817,9 @@
 
                                                 <select class="form-select" aria-label="Default select example" name="employeeaccount_id">
                                                 
-                                                @foreach ($employees as $employee )
+                                                @foreach ($employeesDropDowns as $employeesDropDown )
 
-                                                <option value=" {{$employee->id}} "> {{$employee->fullname}} </option>
+                                                <option value=" {{$employeesDropDown->id}} "> {{$employeesDropDown->fullname}} </option>
                                                     
                                                 @endforeach
 
@@ -907,6 +980,7 @@
                                             <div class="col-md-4">
                                                 <label class="form-label">Spouse Name:</label>
                                                 <input type="text" class="form-control" id="employeespousename" name="employeespousename" required>
+                                                <p class="text-danger">*Type N/A if Not Available</p>
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Employee Mother's Name!</div>
                                             </div>
@@ -1073,6 +1147,7 @@
                                             <div class="col-md-4">
 
                                                 <input type="text" class="form-control" id="vocationalnameofschool" name="vocationalnameofschool" placeholder="Name Of School" required>
+                                                <p class="text-danger">*Type N/A if Not Available</p>
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Vocational School Name!</div>
                                             
@@ -1081,6 +1156,7 @@
                                             <div class="col-md-4">
 
                                                 <input type="text" class="form-control" id="vocationalcoursedegree" name="vocationalcoursedegree" placeholder="Course/Degree" required>
+                                                <p class="text-danger">*Type N/A if Not Available</p>
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Vocational Degree!</div>
                                             
@@ -1089,6 +1165,7 @@
                                             <div class="col-md-4">
                         
                                                 <input type="text" class="form-control" id="vocationalyearcompleted" name="vocationalyearcompleted" placeholder="Year Completed" required>
+                                                <p class="text-danger">*Type N/A if Not Available</p>
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Vocational Year Completed!</div>
                                             
@@ -1101,11 +1178,14 @@
                                         <div class="row p-2 pt-5">
 
                                             <label class="form-label text-center"><b>Work Experiences</b></label>
+                                            <p class="text-danger text-center">*Type N/A if Not Available</p>
+
 
                                             <div class="col-md-3">
 
                                                 <label class="form-label">Company Name:</label>
                                                 <input type="text" class="form-control" id="companyname1" name="companyname1" required>
+                                                
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Company Name!</div>
                                             
@@ -1270,6 +1350,8 @@
 
                                                 </label>
                                                 <textarea class="form-control" id="employeeotherdata" name="employeeotherdata" required></textarea>
+                                                <p class="text-danger">*Type N/A if Not Available</p>
+
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">Enter Other Data!</div>
 
@@ -1479,7 +1561,7 @@
                                         <label class="form-label" for="clientname">Client Name:</label>
                                         <input type="text" class="form-control" name="clientname" id="clientname" required>
                                         <div class="valid-feedback">Looks good!</div>
-                                        <div class="invalid-feedback">Enter Client Designation!</div>
+                                        <div class="invalid-feedback">Enter Client Name!</div>
 
 
                                     </div>

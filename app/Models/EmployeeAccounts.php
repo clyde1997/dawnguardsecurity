@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class EmployeeAccounts extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -32,8 +31,7 @@ class EmployeeAccounts extends Authenticatable
         'confirmpassword',
     ];
 
-    
-    
+        
     /**
      * The attributes that should be hidden for serialization.
      *

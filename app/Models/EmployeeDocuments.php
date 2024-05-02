@@ -22,6 +22,7 @@ class EmployeeDocuments extends Model
      */
     protected $fillable = [
         'employeeaccount_id',
+        'filename',
         'documents',
     ];
 

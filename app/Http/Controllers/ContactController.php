@@ -35,20 +35,20 @@ class ContactController extends Controller
 
 
      //Function to fetch datas in admin dash
-     public function adminView(){
+     //public function adminView(){
 
         //HAD TO DECLARE OTHER FETCHING DATAS SUCH AS CAREERS, INQUIRES, EMPLOYEES DATA, CLIENTS BECAUSE IM HAVING A UNDEFINED ERROR
-        $careers = Careers::paginate(5);
+       // $careers = Careers::paginate(5);
 
-        $inquiries = ContactUs::paginate(4);//Added pagination so the inquiries wont pile up
+       // $inquiries = ContactUs::paginate(4);//Added pagination so the inquiries wont pile up
 
-        $employees = EmployeeAccounts::paginate(5);
+        //$employees = EmployeeAccounts::paginate(5);
 
-        $clients = OurClients::paginate(5);
+       // $clients = OurClients::paginate(5);
 
-        return view('admindash', compact('careers', 'inquiries', 'employees', 'clients'));
+       // return view('admindash', compact('careers', 'inquiries', 'employees', 'clients'));
         
-    }
+    //}
 
 
 

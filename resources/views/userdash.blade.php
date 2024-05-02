@@ -694,11 +694,19 @@
 
                     <form method="POST" action="{{ route('add.Document') }}" enctype="multipart/form-data">
                         @csrf
+
                         <div class="row pb-4">
 
                             <h4 class="h4 text-center pb-5">Upload Documents</h4>
 
-                            <label class="form-label" for="documents">Upload Documents</label>
+                            <label class="form-label" for="filename">Filename:</label>
+                            <input class="form-control" type="text" id="filename" name="filename" placeholder="Enter Filename For The Document">
+    
+                        </div>
+
+                        <div class="row pb-4">
+
+                            <label class="form-label" for="documents">Upload Documents:</label>
                             <input class="form-control" type="file" id="documents" name="documents">
     
                         </div>

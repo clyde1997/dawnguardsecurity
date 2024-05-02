@@ -15,6 +15,43 @@
 </head>
 <body>
 
+    
+    <!--CSS For Navbar Hover Animation Effects-->
+    <style>
+
+        .navbarLinks a{
+
+            position: relative;
+
+        }
+
+        .navbarLinks a::before{
+
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            border-radius: 4px;
+            background-color: rgb(243, 165, 21);
+            bottom: 0;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .3s ease-in-out;
+
+        }
+
+
+        .navbarLinks a:hover::before{
+
+            transform-origin: left;
+            transform: scaleX(1);
+
+        }
+
+
+    </style>
+
      <!--Upper Content-->
      <div class="container-fluid sticky-top">
 
@@ -48,7 +85,7 @@
 
                     <div class="collapse navbar-collapse" id="navbar">
 
-                        <ul class="navbar-nav">
+                        <ul class="navbarLinks navbar-nav">
 
                             <li class="nav-item pe-5">
                                 <a class="nav-link text-light" href="./">Home</a>
@@ -103,7 +140,13 @@
  
                 <p>
                     <h3 class="h1"><b>Our Vision</b></h3>
-                    To be among the most trusted, service-oriented security agency by achieving the optimal customer satisfaction and provide the best and friendliest service possible and be an exemplary employer in the Philippines as peace, safety and prosperity to our employees and clients are our top priority.
+
+                    <p class="lead">
+
+                        To be among the most trusted, service-oriented security agency by achieving the optimal customer satisfaction and provide the best and friendliest service possible and be an exemplary employer in the Philippines as peace, safety and prosperity to our employees and clients are our top priority.
+                   
+                    </p>
+                    
                 </p>
 
             </div>
@@ -121,7 +164,12 @@
  
                 <p>
                     <h3 class="h1"><b>Our Mission</b></h3>
-                    To provide and serve clients the ultimate protection of its assets through quality and efficient security services characterized by utmost dedication, honesty, and integrity and deliver the highest quality of professional private security services based on trust and confidence.                </p>
+
+                    <p class="lead">
+
+                        To provide and serve clients the ultimate protection of its assets through quality and efficient security services characterized by utmost dedication, honesty, and integrity and deliver the highest quality of professional private security services based on trust and confidence.                </p>
+                    
+                    </p>
 
             </div>
 
@@ -148,7 +196,7 @@
 
             <div class="col-md-6 d-flex align-items-center">
  
-                <p>
+                <p class="lead">
                     <b>DAWNGUARD SECURITY AGENCY</b> is a duly licensed security service provider operating throughout the country and is being managed by well-experienced, professional, dynamic, and highly trained people who are committed in catering quality security service to meet the demands of clients. It has developed stronger relationship with business leaders and ably supported by the current leadership of the NBI, PNP, AFP and Local Officials. As such, it has flexible and accessible leaders and managers.                
                 </p>
                     
@@ -189,7 +237,7 @@
 
                                 <div class="personnel_Card1 card h-100">
     
-                                    <img src="{{ asset('./images/aboutus/rolando_pic.jpg') }}" class="img-fluid">
+                                    <img src="{{ asset('./images/aboutus/rolando_pic.jpg') }}" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -217,7 +265,7 @@
 
                                 <div class="personnel_Card2 card h-100">
     
-                                    <img src="{{ asset('./images/aboutus/ace_pic.jpg') }}" class="img-fluid">
+                                    <img src="{{ asset('./images/aboutus/ace_pic.jpg') }}" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -245,7 +293,7 @@
 
                                 <div class="personnel_Card3 card h-100">
     
-                                    <img src="{{ asset('./images/aboutus/sarah_pic.jpg') }}" class="img-fluid">
+                                    <img src="{{ asset('./images/aboutus/sarah_pic.jpg') }}" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -272,7 +320,7 @@
 
                                 <div class="personnel_Card4 card h-100">
     
-                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid">
+                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
                      
@@ -308,7 +356,7 @@
 
                                 <div class="personnel_Card5 card h-100">
     
-                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid">
+                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -336,7 +384,7 @@
 
                                 <div class="personnel_Card6 card h-100">
     
-                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid">
+                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -364,7 +412,7 @@
 
                                 <div class="personnel_Card7 card h-100">
     
-                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid">
+                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -392,7 +440,7 @@
 
                                 <div class="personnel_Card8 card h-100">
     
-                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid">
+                                    <img src="./images/aboutus/profile_empty.jpg" class="img-fluid rounded-circle">
         
                                     <div class="card-body">
             
@@ -457,7 +505,7 @@
                 <div class="row">
 
                     <span>
-                        <a href="#">
+                        <a href="https://www.facebook.com/dawnguard.sec.agency" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
                         </a>
                         <a href="#">

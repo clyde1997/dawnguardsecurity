@@ -19,7 +19,7 @@ class admincredentials extends Seeder
             'name' => 'Rolando',
             'lastname' => 'Alimboyong Sr',
             'admin_username' => 'admin',
-            'password' => Hash::make('dawnguardAgency2022'),
+            'password' => Hash::make('DawnguardAgency2022!'),
             'created_at' => now(),
             'updated_at' => now()
 

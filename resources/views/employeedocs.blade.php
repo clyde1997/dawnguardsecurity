@@ -50,12 +50,34 @@
         </div>
 
  
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <!--Displaying The Employee's Fullname-->
+                <h4 class="h4 pb-4">{{ $employeeFullName->fullname }} Documents</h4>
+
+            </div>
+
         @if ($employeeDocuments)
+            <div class="col-md-6">
+
+                <div class="searchcontainer">
+
+                    <form>
+
+                        <input type="search" name="documentSearch" class="form-control me-2" placeholder="Search File Name Here" value="{{ request('documentSearch') }}">
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
 
             <div class="row table-responsive">
-
-                <h4 class="h4 text-center pb-4">Documents</h4>
-
                 
                 <table class="table">
 
@@ -64,6 +86,7 @@
                             <tr>
                                 
                                 <th scope="col">Filename</th>
+                                <th scope="col">Documents</th>
                                 <th scope="col">Upload Date</th>
         
                             </tr>
@@ -75,7 +98,8 @@
                         <tbody>
         
                             <tr>
-        
+
+                                <td>{{ $employeedocument->filename }}</td>
                                 <td><a href="{{ route('download.documents', ['id' => $employeedocument->id]) }}" target="_blank">{{ $employeedocument->documents }}</a></td>
                                 <td>{{ $employeedocument->created_at }}</td>
         
